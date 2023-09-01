@@ -1,7 +1,5 @@
 'use strict';
-
-
-
+const btn = document.querySelector('.btn');
 const playerRed = 'R';
 const playerYellow = 'Y';
 let currentPlayer = playerRed;
@@ -13,6 +11,9 @@ let board;
 const rows = 6;
 const columns = 7;
 let currColumns = [];
+
+const audioRed = new Audio('audio/red.mp3');
+const audioYellow = new Audio('audio/yellow.mp3');
 
 window.onload = function () {
     setGame();
@@ -126,8 +127,39 @@ function setWinner(r, c) {
     let winner = document.getElementById('winner');
     if (board[r][c] == playerRed) {
         winner.innerHTML = 'Red Wins';
+        winner.classList.add('red')
+        audioRed.play();
     } else {
-        winner.innerHTML = 'Yellow wins'
+        winner.innerHTML = 'Yellow wins';
+        audioYellow.play();
+        winner.classList.add('yellow')
     }
     gameOver = true;
+    btn.style.display = 'inline';
+
 }
+
+function resetGame() {
+    currentPlayer = playerRed;
+    gameOver = false;
+    currColumns = [5, 5, 5, 5, 5, 5, 5]; // Configura todas las columnas en la primera fila
+
+    // Limpia el tablero y elimina las clases CSS
+    for (let r = 0; r < rows; r++) {
+        for (let c = 0; c < columns; c++) {
+            board[r][c] = ' ';
+            let tile = document.getElementById(r.toString() + '-' + c.toString());
+            tile.classList.remove('red-piece', 'yellow-piece');
+        }
+    }
+
+    // Oculta el botón
+    btn.style.display = 'none';
+
+    // Limpia el mensaje de ganador
+    let winner = document.getElementById('winner');
+    winner.innerHTML = 'Who will win?';
+    winner.classList.remove('red', 'yellow');
+}
+
+btn.addEventListener('click', resetGame)
