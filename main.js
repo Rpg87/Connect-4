@@ -2,6 +2,7 @@
 const btn = document.querySelector('.btn');
 const playerRed = 'R';
 const playerYellow = 'Y';
+const boardGame = document.querySelector('.board-game');
 let currentPlayer = playerRed;
 let gameOver = false;
 
@@ -18,6 +19,13 @@ const audioYellow = new Audio('audio/yellow.mp3');
 window.onload = function () {
     setGame();
 }
+boardGame.addEventListener('click', () => {
+    boardGame.classList.add('clicked');
+    setTimeout(() => {
+        boardGame.classList.remove('clicked');
+
+    }, 300)
+})
 
 function setGame() {
     board = [];
@@ -41,6 +49,7 @@ function setGame() {
         board.push(row);
     }
 }
+
 
 function setPiece() {
     if (gameOver) {
