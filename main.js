@@ -44,7 +44,7 @@ function setGame() {
             console.log(this);
             tile.addEventListener('click', setPiece);
             document.getElementById('board').append(tile);
-            // Con estas líneas estamos creando un div, le añadimos ID ejemplo 0-0 (c=0 r=0), le añadimos una clase y por último lo añadimos a nuestro board gracias a append
+            // With these lines we are creating a div, we add ID example 0-0 (c=0 r=0), we add a class and finally we add it to our dashboard thanks to append
         }
         board.push(row);
     }
@@ -151,9 +151,9 @@ function setWinner(r, c) {
 function resetGame() {
     currentPlayer = playerRed;
     gameOver = false;
-    currColumns = [5, 5, 5, 5, 5, 5, 5]; // Configura todas las columnas en la primera fila
+    currColumns = [5, 5, 5, 5, 5, 5, 5]; // Set all columns in the first row
 
-    // Limpia el tablero y elimina las clases CSS
+    // Cleans the board and removes CSS classes
     for (let r = 0; r < rows; r++) {
         for (let c = 0; c < columns; c++) {
             board[r][c] = ' ';
@@ -162,10 +162,10 @@ function resetGame() {
         }
     }
 
-    // Oculta el botón
+    // Hide button
     btn.style.display = 'none';
 
-    // Limpia el mensaje de ganador
+    // Clears winner message
     let winner = document.getElementById('winner');
     winner.innerHTML = 'Who will win?';
     winner.classList.remove('red', 'yellow');
