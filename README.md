@@ -67,7 +67,7 @@ Do yo wanna play again? You have a button:
 <p align="center">  <strong><u>DIAGONALLY</u></strong></p>
 <br>
 <div align="center">
-<img src= './images/DI.png' alt= 'diagonally' height="350px" width="400">
+<img src= './images/di.png' alt= 'diagonally' height="350px" width="400">
 </div>
 <br>
 <p align="center">  <strong><u>TIE</u></strong></p>
