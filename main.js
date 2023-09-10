@@ -8,7 +8,6 @@ let gameOver = false;
 
 let board;
 
-
 const rows = 6;
 const columns = 7;
 let currColumns = [];
@@ -23,13 +22,13 @@ boardGame.addEventListener('click', () => {
     boardGame.classList.add('clicked');
     setTimeout(() => {
         boardGame.classList.remove('clicked');
-
     }, 300)
 })
 
 function setGame() {
     board = [];
     currColumns = [5, 5, 5, 5, 5, 5, 5];
+
 
     for (let r = 0; r < rows; r++) {
         let row = [];
@@ -41,7 +40,7 @@ function setGame() {
             let tile = document.createElement('div');
             tile.id = r.toString() + '-' + c.toString();
             tile.classList.add('tile');
-            console.log(this);
+            // console.log(this);
             tile.addEventListener('click', setPiece);
             document.getElementById('board').append(tile);
             // With these lines we are creating a div, we add ID example 0-0 (c=0 r=0), we add a class and finally we add it to our dashboard thanks to append
@@ -59,7 +58,6 @@ function setPiece() {
     let coords = this.id.split('-'); //'0-0' -> ['0', '0']
     let r = parseInt(coords[0]);
     let c = parseInt(coords[1]);
-    // r = currColumns
 
     r = currColumns[c];
     if (r < 0) {
@@ -129,7 +127,27 @@ function checkWinner() {
             }
         }
     }
+    if (isBoardFull() && !gameOver) {
+        setDraw();
+    }
 
+}
+
+function setDraw() {
+    let winner = document.getElementById('winner');
+    winner.textContent = "It's a tie.";
+    btn.style.display = 'inline';
+}
+
+function isBoardFull() {
+    for (let r = 0; r < rows; r++) {
+        for (let c = 0; c < columns; c++) {
+            if (board[r][c] === ' ') {
+                return false;
+            }
+        }
+    }
+    return true;
 }
 
 function setWinner(r, c) {
